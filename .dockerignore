@@ -1,0 +1,11 @@
+.git
+.github
+.gitignore
+.vscode
+.idea
+*.md
+IIS.txt
+nginx.txt
+config.php
+!plugins/**/config.php
+install/
