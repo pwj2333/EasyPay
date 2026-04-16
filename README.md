@@ -56,3 +56,39 @@
 推荐使用 **Bepusdt** 插件进行USDT（TRC20）收款。Bepusdt 是适用于彩虹易支付系统的USDT收款插件，收到的货币直接转入商户钱包，不经过任何第三方。
 
 插件开源地址→：[Bepusdt GitHub](https://github.com/v03413/bepusdt)
+
+---
+
+## Docker 一键构建与部署
+
+### 1. GitHub Actions 自动构建镜像
+
+本项目已内置工作流文件：`.github/workflows/docker-build.yml`，满足以下场景：
+
+1. 推送到 `main` 或 `master` 分支时，自动构建并推送镜像到 GHCR。
+2. 手动点击 Actions 的 `workflow_dispatch` 也可触发构建。
+3. 自动推送标签：
+	- `latest`
+	- `sha-<短提交号>`
+
+镜像地址格式：
+
+`ghcr.io/<你的GitHub用户名>/<你的仓库名小写>:latest`
+
+例如本仓库对应：
+
+`ghcr.io/pwj2333/easypay:latest`
+
+### 2. 服务器一键部署（示例）
+
+将下面命令中的端口、容器名、配置文件路径按需修改后执行：
+
+```bash
+docker pull ghcr.io/pwj2333/easypay:latest && (docker rm -f easypay 2>/dev/null || true) && docker run -d --restart unless-stopped -p 7000:80 --name easypay -v /usr/easypay/config.php:/var/www/html/config.php ghcr.io/pwj2333/easypay:latest && docker image prune -f
+```
+
+说明：
+
+1. `-v /usr/easypay/config.php:/var/www/html/config.php` 用于把宿主机配置文件挂载进容器。
+2. `--restart unless-stopped` 可在服务器重启后自动拉起。
+3. 如果配置文件路径不存在，请先在宿主机创建。
