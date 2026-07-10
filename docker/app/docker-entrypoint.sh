@@ -78,6 +78,49 @@ foreach ($defaults as $key => $default) {
         $save->execute([':k' => $key, ':v' => $newValue]);
     }
 }
+
+function easypay_mojibake_default($value) {
+    return is_string($value)
+        && $value !== ''
+        && preg_match('/\p{Han}/u', $value) !== 1
+        && preg_match('/[^\x00-\x7F]/', $value) === 1;
+}
+
+$configDefaults = [
+    'sitename' => '聚合支付平台',
+    'title' => '聚合支付 - 行业领先的免签约支付平台',
+    'keywords' => '聚合支付,支付宝免签约即时到账,财付通免签约,微信免签约支付,QQ钱包免签约,免签约支付',
+    'description' => '聚合支付是XX公司旗下的免签约支付产品，完美解决支付难题，一站式接入支付宝，微信，财付通，QQ钱包,微信wap，帮助开发者快速集成到自己相应产品，效率高，见效快，费率低！',
+    'orgname' => 'XX公司',
+    'blockalert' => '温馨提醒该商品禁止出售，如有疑问请联系网站客服！',
+    'transfer_name' => '聚合支付平台',
+    'transfer_desc' => '聚合支付平台自动结算',
+];
+
+foreach ($configDefaults as $key => $default) {
+    $stmt->execute([':k' => $key]);
+    if (easypay_mojibake_default($stmt->fetchColumn())) {
+        $save->execute([':k' => $key, ':v' => $default]);
+    }
+}
+
+$typeTable = '`'.$dbconfig['dbqz'].'_type`';
+$typeDefaults = [
+    1 => '支付宝',
+    2 => '微信支付',
+    3 => 'QQ钱包',
+    4 => '网银支付',
+    5 => '京东支付',
+];
+$selectType = $pdo->prepare("SELECT name FROM {$typeTable} WHERE id = :id");
+$saveType = $pdo->prepare("UPDATE {$typeTable} SET name = :name WHERE id = :id");
+
+foreach ($typeDefaults as $id => $name) {
+    $selectType->execute([':id' => $id]);
+    if (easypay_mojibake_default($selectType->fetchColumn())) {
+        $saveType->execute([':id' => $id, ':name' => $name]);
+    }
+}
 PHP
 
 exec docker-php-entrypoint "$@"

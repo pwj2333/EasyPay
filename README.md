@@ -77,7 +77,7 @@ docker compose pull && docker compose up -d
 
 默认访问地址：
 
-`http://服务器IP:8000/`
+`http://服务器IP:7000/`
 
 后台默认账号密码：
 

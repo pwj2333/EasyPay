@@ -18,7 +18,7 @@ class PdoHelper
 	{
 		$this->prefix = $dbconfig['dbqz'].'_';
 		try {
-			$this->db = new \PDO("mysql:host={$dbconfig['host']};dbname={$dbconfig['dbname']};port={$dbconfig['port']}",$dbconfig['user'],$dbconfig['pwd']);
+			$this->db = new \PDO("mysql:host={$dbconfig['host']};dbname={$dbconfig['dbname']};port={$dbconfig['port']};charset=utf8mb4",$dbconfig['user'],$dbconfig['pwd']);
 		} catch (\Exception $e) {
 			exit('链接数据库失败:' . $e->getMessage());
 		}

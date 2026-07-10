@@ -3,6 +3,9 @@
 -- 使用前请先创建好数据库，然后在该数据库中执行此SQL
 -- ============================================
 
+SET NAMES utf8mb4;
+SET CHARACTER SET utf8mb4;
+
 DROP TABLE IF EXISTS `pay_config`;
 CREATE TABLE `pay_config` (
   `k` varchar(32) NOT NULL,
