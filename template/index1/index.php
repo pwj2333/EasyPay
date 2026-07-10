@@ -198,9 +198,7 @@ require INDEX_ROOT.'head.php';
 </div>
 <!-- Scripts -->
 <script>
-	(function($) {
-		$('body').addClass('landing');
-		$('#header').addClass('alt');
-	})(jQuery);
+	document.body.classList.add('landing');
+	document.getElementById('header').classList.add('alt');
 </script>
 <?php require INDEX_ROOT.'foot.php';?>
