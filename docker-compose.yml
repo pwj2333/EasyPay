@@ -1,0 +1,40 @@
+services:
+  db:
+    image: mysql:8.0
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-EasyPayRoot_ChangeMe}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-easypay}
+      MYSQL_USER: ${MYSQL_USER:-easypay}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-EasyPayLocal_ChangeMe}
+    volumes:
+      - easypay-db:/var/lib/mysql
+      - ./init_full.sql:/docker-entrypoint-initdb.d/001-init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -u$${MYSQL_USER} -p$${MYSQL_PASSWORD} --silent"]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+
+  app:
+    image: ghcr.io/pwj2333/easypay:latest
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      EASYPAY_DB_HOST: db
+      EASYPAY_DB_PORT: 3306
+      EASYPAY_DB_NAME: ${MYSQL_DATABASE:-easypay}
+      EASYPAY_DB_USER: ${MYSQL_USER:-easypay}
+      EASYPAY_DB_PASSWORD: ${MYSQL_PASSWORD:-EasyPayLocal_ChangeMe}
+      EASYPAY_DB_PREFIX: ${EASYPAY_DB_PREFIX:-pay}
+    ports:
+      - "${EASYPAY_HTTP_PORT:-8000}:80"
+    volumes:
+      - easypay-files:/var/www/html/assets/files
+
+volumes:
+  easypay-db:
+  easypay-files:

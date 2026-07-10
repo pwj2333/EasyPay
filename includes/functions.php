@@ -1076,11 +1076,21 @@ function generate_key_pair(){
 	$config = [
 		"private_key_bits" => 2048,
 	];
+	if($configPath = getenv('OPENSSL_CONF')){
+		$config['config'] = $configPath;
+	}
 	$res = openssl_pkey_new($config);
+	if($res === false){
+		throw new RuntimeException('OpenSSL key generation failed: '.(openssl_error_string() ?: 'unknown error'));
+	}
 	$privateKey = '';
-	openssl_pkey_export($res, $privateKey, null, $config);
+	if(!openssl_pkey_export($res, $privateKey, null, $config)){
+		throw new RuntimeException('OpenSSL private key export failed');
+	}
 	$pubKey = openssl_pkey_get_details($res);
-	openssl_pkey_free($res);
+	if($pubKey === false){
+		throw new RuntimeException('OpenSSL public key export failed');
+	}
 	return ['public_key'=>pemToBase64($pubKey["key"]), 'private_key'=>pemToBase64($privateKey)];
 }
 

@@ -59,36 +59,33 @@
 
 ---
 
-## Docker 一键构建与部署
+## Docker 一键部署
 
-### 1. GitHub Actions 自动构建镜像
-
-本项目已内置工作流文件：`.github/workflows/docker-build.yml`，满足以下场景：
-
-1. 推送到 `main` 或 `master` 分支时，自动构建并推送镜像到 GHCR。
-2. 手动点击 Actions 的 `workflow_dispatch` 也可触发构建。
-3. 自动推送标签：
-	- `latest`
-	- `sha-<短提交号>`
-
-镜像地址格式：
-
-`ghcr.io/<你的GitHub用户名>/<你的仓库名小写>:latest`
-
-例如本仓库对应：
+本仓库使用 GitHub Actions 构建镜像。推送到 `main` 或 `master` 后，`.github/workflows/docker-build.yml` 会自动构建并推送到：
 
 `ghcr.io/pwj2333/easypay:latest`
 
-### 2. 服务器一键部署（示例）
-
-将下面命令中的端口、容器名、配置文件路径按需修改后执行：
+服务器部署只需要 Docker Compose：
 
 ```bash
-docker pull ghcr.io/pwj2333/easypay:latest && (docker rm -f easypay 2>/dev/null || true) && docker run -d --restart unless-stopped -p 7000:80 --name easypay -v /usr/easypay/config.php:/var/www/html/config.php ghcr.io/pwj2333/easypay:latest && docker image prune -f
+git clone https://github.com/pwj2333/EasyPay.git
+cd EasyPay
+cp .env.example .env
+# 修改 .env 里的数据库密码和对外端口
+docker compose pull && docker compose up -d
 ```
+
+默认访问地址：
+
+`http://服务器IP:8000/`
+
+后台默认账号密码：
+
+`admin / 123456`
 
 说明：
 
-1. `-v /usr/easypay/config.php:/var/www/html/config.php` 用于把宿主机配置文件挂载进容器。
-2. `--restart unless-stopped` 可在服务器重启后自动拉起。
-3. 如果配置文件路径不存在，请先在宿主机创建。
+1. 首次启动会用 `init_full.sql` 自动初始化 MySQL 数据库。
+2. `docker-compose.yml` 会自动生成容器内的 `config.php`，不需要手写数据库配置。
+3. 上传文件保存在 Docker volume `easypay-files`，数据库保存在 `easypay-db`。
+4. 生产环境上线后请立刻修改后台默认密码和 `.env` 数据库密码。

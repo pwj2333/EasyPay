@@ -1,3 +1,4 @@
+# syntax=docker/dockerfile:1
 FROM php:8.2-apache-bookworm
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -39,8 +40,12 @@ memory_limit = 256M
 date.timezone = Asia/Shanghai
 PHPINI
 
+COPY docker/app/docker-entrypoint.sh /usr/local/bin/easypay-entrypoint
+RUN chmod +x /usr/local/bin/easypay-entrypoint
+
 WORKDIR /var/www/html
 COPY . .
+RUN rm -rf docker
 
 # 安装 Composer 依赖
 RUN COMPOSER_ALLOW_SUPERUSER=1 \
@@ -51,3 +56,6 @@ RUN COMPOSER_ALLOW_SUPERUSER=1 \
 RUN chown -R www-data:www-data /var/www/html
 
 EXPOSE 80
+
+ENTRYPOINT ["easypay-entrypoint"]
+CMD ["apache2-foreground"]

@@ -22,6 +22,7 @@ Desktop.ini
 # PHP 运行时
 *.log
 *.cache
+/.runtime/
 
 # 环境配置
 .env
