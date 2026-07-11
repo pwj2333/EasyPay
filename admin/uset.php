@@ -644,7 +644,7 @@ function testpay(subid, id) {
 				success : function(data) {
 					if(data.code == 0){
 						layer.close(ii);
-						payWindow.location.replace(data.url);
+						payWindow.location.replace(new URL(data.url, window.location.href).href);
 					}else{
 						payWindow.close();
 						layer.alert(data.msg, {icon:2});
