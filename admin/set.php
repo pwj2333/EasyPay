@@ -129,12 +129,9 @@ if($mod=='site'){
 	  <div class="col-sm-10"><select class="form-control" name="user_style" default="<?php echo $conf['user_style']?>"><option value="0">黑色（1）</option><option value="1">黑色（2）</option><option value="2">棕色（1）</option><option value="3">棕色（2）</option><option value="4">蓝色（1）</option><option value="5">蓝色（2）</option><option value="6">紫色（1）</option><option value="7">紫色（2）</option></select></div>
 	</div><br/>
 	<div class="form-group">
-	  <label class="col-sm-2 control-label">公共静态资源CDN</label>
-	  <div class="col-sm-10"><select class="form-control" name="cdnpublic" default="<?php echo $conf['cdnpublic']?>">
-	  <option value="4">字节跳动CDN</option>
-	  <option value="0">南方科大CDN</option>
-	  <option value="2">ZstaticCDN</option>
-	  <option value="1">360CDN</option>
+	  <label class="col-sm-2 control-label">公共静态资源</label>
+	  <div class="col-sm-10"><select class="form-control" name="cdnpublic">
+	  <option value="0">本地静态资源</option>
 	  </select></div>
 	</div><br/>
 	<div class="form-group">
@@ -1284,7 +1281,7 @@ echo '</div></div>';
 ?>
     </div>
   </div>
-<script src="https://cdn.bootcdn.net/ajax/libs/layer/3.1.1/layer.js"></script>
+<script src="/assets/cdnjs/layer/3.1.1/layer.js"></script>
 <script>
 var items = $("select[default]");
 for (i = 0; i < items.length; i++) {

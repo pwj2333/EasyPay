@@ -57,7 +57,7 @@ $codename = !empty($userrow['codename'])?$userrow['codename']:$userrow['username
 </div>
 </div>
 <script src="<?php echo $cdnpublic?>jquery/1.12.4/jquery.min.js"></script>
-<script src="//open.mobile.qq.com/sdk/qqapi.js?_bid=152"></script>
+<script src="/assets/external/qq/qqapi.js"></script>
 <script src="js/close.js"></script>
 <script>
 document.body.addEventListener('touchmove', function (event) {

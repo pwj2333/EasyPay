@@ -1,16 +1,7 @@
 <?php
 @header('Content-Type: text/html; charset=UTF-8');
 
-$admin_cdnpublic = 4;
-if($admin_cdnpublic==1){
-	$cdnpublic = '//lib.baomitu.com/';
-}elseif($admin_cdnpublic==2){
-	$cdnpublic = 'https://s4.zstatic.net/ajax/libs/';
-}elseif($admin_cdnpublic==4){
-	$cdnpublic = '//cdnjs.cloudflare.com/ajax/libs/';
-}else{
-	$cdnpublic = '//mirrors.sustech.edu.cn/cdnjs/ajax/libs/';
-}
+$cdnpublic = '/assets/cdnjs/';
 ?>
 <!DOCTYPE html>
 <html lang="zh-cn">

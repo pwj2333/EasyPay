@@ -71,7 +71,7 @@ if(navigator.userAgent.indexOf("AlipayClient") > -1){
     }
 }else{
     $('#Close').click(function() {
-        window.opener=null;window.close();
+        window.location.replace('/');
     });
 }
 </script>

@@ -2,11 +2,11 @@
 if(!defined('IN_PLUGIN'))exit();
 $useragent = strtolower($_SERVER['HTTP_USER_AGENT']);
 if(strpos($useragent, 'iphone')!==false || strpos($useragent, 'ipod')!==false){
-	$alert = '<img src="//puep.qpic.cn/coral/Q3auHgzwzM4fgQ41VTF2rLrNvRzmibibqrjTFj5g2kzGyoQj3ViartAEQ/0" class="icon-safari" /> <span id="openm">Safari打开</span>';
+	$alert = '<img src="/assets/external/images/open-safari.png" class="icon-safari" /> <span id="openm">Safari打开</span>';
 }elseif(strpos($useragent, 'micromessenger')!==false){
-	$alert = '<img src="//puep.qpic.cn/coral/Q3auHgzwzM4fgQ41VTF2rLbNVmztN9ia6GPRJ0IFicucFTr4Pp8xzibsw/0" class="icon-safari" /> <span id="openm">浏览器打开</span>';
+	$alert = '<img src="/assets/external/images/open-browser.png" class="icon-safari" /> <span id="openm">浏览器打开</span>';
 }else{
-	$alert = '<img src="//puep.qpic.cn/coral/Q3auHgzwzM4fgQ41VTF2rOCTm6gtUeQKX7m84xg47iaVosibGckrP0JQ/0" class="icon-safari" /> <span id="openm">浏览器打开</span>';
+	$alert = '<img src="/assets/external/images/open-browser-alt.png" class="icon-safari" /> <span id="openm">浏览器打开</span>';
 }
 ?>
 <!DOCTYPE html>
@@ -24,7 +24,7 @@ if(strpos($useragent, 'iphone')!==false || strpos($useragent, 'ipod')!==false){
 body,html{width:100%;height:100%}
 *{margin:0;padding:0}
 body{background-color:#fff}
-.top-bar-guidance{font-size:15px;color:#fff;height:70%;line-height:1.8;padding-left:20px;padding-top:20px;background:url(//gw.alicdn.com/tfs/TB1eSZaNFXXXXb.XXXXXXXXXXXX-750-234.png) center top/contain no-repeat}
+.top-bar-guidance{font-size:15px;color:#fff;height:70%;line-height:1.8;padding-left:20px;padding-top:20px;background:url(/assets/external/images/open-guide.png) center top/contain no-repeat}
 .top-bar-guidance .icon-safari{width:25px;height:25px;vertical-align:middle;margin:0 .2em}
 .app-download-tip{margin:0 auto;width:290px;text-align:center;font-size:15px;color:#2466f4;background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAcAQMAAACak0ePAAAABlBMVEUAAAAdYfh+GakkAAAAAXRSTlMAQObYZgAAAA5JREFUCNdjwA8acEkAAAy4AIE4hQq/AAAAAElFTkSuQmCC) left center/auto 15px repeat-x}
 .app-download-tip .guidance-desc{background-color:#fff;padding:0 5px}
@@ -42,7 +42,7 @@ body{background-color:#fff}
 <a class="app-download-btn" id="J_BtnDowanloadApp">点此继续访问</a>
 <a style="display: none;" href="" id="vurl" rel="noreferrer"></a>
 
-<script src="//lib.baomitu.com/jquery/1.12.4/jquery.min.js"></script>
+<script src="/assets/cdnjs/jquery/1.12.4/jquery.min.js"></script>
 <script>
 function openu(u){
 document.getElementById("vurl").href= u;

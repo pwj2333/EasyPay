@@ -363,6 +363,7 @@ html{background:#eee}body{background:#fff;color:#333;font-family:"微软雅黑",
     exit;
 }
 function returnTemplate($return_url) {
+	$return_url = getSafeReturnUrl($return_url);
 	$url = base64_encode($return_url);
     ?>
     <!DOCTYPE html>
@@ -453,6 +454,14 @@ function checkGroupSettings($str){
 function isEmpty($value)
 {
 	return $value === null || trim($value) === '';
+}
+
+function getSafeReturnUrl($url, $fallback = '/payok.html')
+{
+	if(!is_string($url)) return $fallback;
+	$url = trim($url);
+	if($url === '' || preg_match('/^(?:about|javascript|data):/i', $url)) return $fallback;
+	return $url;
 }
 
 function creat_callback($data){

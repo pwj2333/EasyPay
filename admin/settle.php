@@ -69,7 +69,7 @@ echo'</ul></div>';
       </div>
     </div>
   </div>
-<script src="https://cdn.bootcdn.net/ajax/libs/layer/3.1.1/layer.js"></script>
+<script src="/assets/cdnjs/layer/3.1.1/layer.js"></script>
 <script>
 function createBatch(){
 	var confirmobj = layer.confirm('你确定要生成结算批次吗？', {

@@ -11,7 +11,7 @@ if(!defined('IN_CRONLITE'))exit();
   <meta name="keywords" content="<?php echo $conf['keywords']?>">
   <meta name="description" content="<?php echo $conf['description']?>">
   <link rel="stylesheet" href="<?php echo STATIC_ROOT?>css/nucleo.css" type="text/css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
+
   <link rel="stylesheet" href="<?php echo STATIC_ROOT?>css/app.min.css" type="text/css">
   <style type="text/css">.row {margin:0}</style>
 </head>

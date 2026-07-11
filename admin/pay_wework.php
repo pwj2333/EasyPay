@@ -79,7 +79,7 @@ echo '<tr><td><b>'.$res['id'].'</b></td><td>'.$res['name'].'</td><td>'.$res['app
 	</div>
 	
   </div>
-<script src="https://cdn.bootcdn.net/ajax/libs/layer/3.1.1/layer.js"></script>
+<script src="/assets/cdnjs/layer/3.1.1/layer.js"></script>
 <script>
 function addframe(){
 	$("#modal-store").modal('show');

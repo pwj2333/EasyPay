@@ -33,7 +33,7 @@ if(!defined('IN_CRONLITE'))exit();
 				</div>
 			</div>
 		</div>
-		<script src="https://res.wx.qq.com/open/libs/zepto/1.1.6/zepto.js"></script>
+		<script src="/assets/external/wechat/zepto-1.1.6.js"></script>
 		<script src="<?php echo $cdnpublic?>jquery/1.12.4/jquery.min.js"></script>
 		<script type="text/javascript">
 document.body.addEventListener('touchmove', function (event) {
@@ -70,7 +70,7 @@ document.body.addEventListener('touchmove', function (event) {
 			}
 		}else{
 			$('.weui_opr_area #Close').click(function() {
-				window.opener=null;window.close();
+				window.location.replace('/');
 			});
 		}
 		</script>

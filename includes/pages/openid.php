@@ -93,7 +93,7 @@ if(navigator.userAgent.indexOf("AlipayClient/") > -1){
     $('#Close').hide();
 }else {
     $('#Close').click(function() {
-        window.opener=null;window.close();
+        window.location.replace('/');
     });
 }
 </script>

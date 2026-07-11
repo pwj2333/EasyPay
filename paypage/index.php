@@ -165,7 +165,7 @@ $_SESSION['paypage_token'] = $csrf_token;
 </div>
 
 <script src="<?php echo $cdnpublic?>jquery/3.4.1/jquery.min.js"></script>
-<script src="//open.mobile.qq.com/sdk/qqapi.js?_bid=152"></script>
+<script src="/assets/external/qq/qqapi.js"></script>
 <script src="js/hammer.js"></script>
 <script src="js/common.js"></script>
 <script src="js/pay.js?v=1004"></script>

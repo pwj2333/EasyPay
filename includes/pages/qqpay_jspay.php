@@ -21,7 +21,7 @@ if(!defined('IN_PLUGIN'))exit();
 <span>正在跳转...</span>
 <script src="<?php echo $cdnpublic?>jquery/1.12.4/jquery.min.js"></script>
 <script src="<?php echo $cdnpublic?>layer/3.1.1/layer.min.js"></script>
-<script src="//open.mobile.qq.com/sdk/qqapi.js?_bid=152"></script>
+<script src="/assets/external/qq/qqapi.js"></script>
 <script>
 	document.body.addEventListener('touchmove', function (event) {
 		event.preventDefault();
@@ -47,7 +47,7 @@ if(!defined('IN_PLUGIN'))exit();
             success: function (data) {
                 if (data.code == 1) {
 					layer.msg('支付成功，正在跳转中...', {icon: 16,shade: 0.1,time: 15000});
-					setTimeout(window.location.href=data.backurl, 1000);
+					setTimeout(function () { window.location.href = data.backurl; }, 1000);
                 }else{
                     setTimeout("loadmsg()", 2000);
                 }

@@ -39,7 +39,7 @@ if($islogin==1){}else exit("<script language='javascript'>window.location.href='
 	  </table>
     </div>
   </div>
-<script src="https://cdn.bootcdn.net/ajax/libs/layer/3.1.1/layer.js"></script>
+<script src="/assets/cdnjs/layer/3.1.1/layer.js"></script>
 <script src="<?php echo $cdnpublic?>bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 <script src="<?php echo $cdnpublic?>bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.zh-CN.min.js"></script>
 <script src="../assets/js/bootstrap-table.min.js"></script>

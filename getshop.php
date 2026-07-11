@@ -34,6 +34,7 @@ default:
 		if($row['status'] == 2){
 			$jumpurl = '/payerr.html';
 		}
+		$jumpurl = getSafeReturnUrl($jumpurl);
 		echo json_encode(['code'=>1, 'msg'=>'付款成功', 'backurl'=>$jumpurl]);
 	}else{
 		echo json_encode(['code'=>-1, 'msg'=>'未付款']);

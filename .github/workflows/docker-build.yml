@@ -23,6 +23,13 @@ jobs:
       - name: Set image name (lowercase)
         run: echo "IMAGE_NAME=${GITHUB_REPOSITORY,,}" >> "$GITHUB_ENV"
 
+      - name: Validate PHP and local assets
+        run: |
+          docker run --rm -v "$PWD:/app" -w /app php:8.2-cli sh -c '
+            find . -name "*.php" -not -path "./includes/vendor/*" -print0 | xargs -0 -n1 php -l >/dev/null
+            for test in tests/*.php; do php -d zend.assertions=1 -d assert.exception=1 "$test"; done
+          '
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 

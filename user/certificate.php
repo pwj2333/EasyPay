@@ -126,7 +126,7 @@ if($conf['cert_open']==2 && $userrow['cert']!=1){
 <?php if($userrow['cert']==1 && !isset($_GET['upgrade'])){?>
 			<div class="row">
 				<div class="col-xs-12 col-sm-6">
-					<img src="https://imgcache.qq.com/open_proj/proj_qcloud_v2/mc_2014/user/auth/css/mod/img/sfz.jpg" class="pull-right">
+					<img src="/assets/external/images/sfz.jpg" class="pull-right">
 				</div>
 				<div class="col-xs-12 col-sm-6">
 					<h4>恭喜您已通过<?php echo $conf['sitename']?>实名认证！</h4>

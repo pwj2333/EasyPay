@@ -56,7 +56,7 @@ echo '<tr><td><b>'.$res['gid'].'</b></td><td>'.$res['name'].'</td><td><a class="
 	</div>
   </div>
 </div>
-<script src="https://cdn.bootcdn.net/ajax/libs/layer/3.1.1/layer.js"></script>
+<script src="/assets/cdnjs/layer/3.1.1/layer.js"></script>
 <script>
 function saveAll(){
 	var ii = layer.load(2, {shade:[0.1,'#fff']});

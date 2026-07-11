@@ -356,7 +356,7 @@ echo '<tr><td><b>'.$res['id'].'</b></td><td><img src="/assets/icon/'.$paytypes[$
 <?php } ?>
     </div>
   </div>
-<script src="https://cdn.bootcdn.net/ajax/libs/layer/3.1.1/layer.js"></script>
+<script src="/assets/cdnjs/layer/3.1.1/layer.js"></script>
 <script>
 function addUser(obj){
 	var ii = layer.load(2, {shade:[0.1,'#fff']});

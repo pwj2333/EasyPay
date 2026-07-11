@@ -111,7 +111,7 @@ include './head.php';
       </div>
     </div>
   </div>
-<script src="https://cdn.bootcdn.net/ajax/libs/layer/3.1.1/layer.js"></script>
+<script src="/assets/cdnjs/layer/3.1.1/layer.js"></script>
 <script>
 function submitlogin(){
     var user = $("input[name='user']").val();
