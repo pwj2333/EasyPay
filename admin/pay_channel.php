@@ -580,7 +580,7 @@ function testpay(id) {
 				success : function(data) {
 					if(data.code == 0){
 						layer.close(ii);
-						window.open(data.url);
+						window.location.assign(data.url);
 					}else{
 						layer.alert(data.msg, {icon:2});
 					}
