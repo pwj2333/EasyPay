@@ -572,31 +572,14 @@ function testpay(id) {
 		yes: function(){
 			var name = $("input[name='test_name']").val();
 			var money = $("input[name='test_money']").val();
-			var payWindow = window.open('about:blank', '_blank');
-			if(!payWindow){
-				layer.alert('请允许本站打开弹出式窗口后重试', {icon:2});
-				return;
-			}
-			$.ajax({
-				type : 'POST',
-				url : 'ajax_pay.php?act=testpay',
-				data : {channel:id, name:name, money:money},
-				dataType : 'json',
-				success : function(data) {
-					if(data.code == 0){
-						layer.close(ii);
-						payWindow.location.replace(new URL(data.url, window.location.href).href);
-					}else{
-						payWindow.close();
-						layer.alert(data.msg, {icon:2});
-					}
-				},
-				error:function(data){
-					payWindow.close();
-					layer.msg('服务器错误');
-					return false;
-				}
-			});
+			var form = $('<form method="post" target="_blank" action="ajax_pay.php?act=testpay&redirect=1"></form>');
+			$('<input type="hidden" name="channel">').val(id).appendTo(form);
+			$('<input type="hidden" name="name">').val(name).appendTo(form);
+			$('<input type="hidden" name="money">').val(money).appendTo(form);
+			form.appendTo(document.body);
+			form[0].submit();
+			form.remove();
+			layer.close(ii);
 		}
 	});
 }

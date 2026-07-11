@@ -527,6 +527,10 @@ case 'testpay':
 	$return_url=$siteurl.'user/test.php?ok=1&trade_no='.$trade_no;
 	$domain=getdomain($return_url);
 	if(!$DB->exec("INSERT INTO `pre_order` (`trade_no`,`out_trade_no`,`uid`,`tid`,`addtime`,`name`,`money`,`type`,`channel`,`subchannel`,`realmoney`,`getmoney`,`notify_url`,`return_url`,`domain`,`ip`,`status`) VALUES (:trade_no, :out_trade_no, :uid, 3, NOW(), :name, :money, :type, :channel, :subchannel, :realmoney, :getmoney, :notify_url, :return_url, :domain, :clientip, 0)", [':trade_no'=>$trade_no, ':out_trade_no'=>$trade_no, ':uid'=>$conf['test_pay_uid'], ':name'=>$name, ':money'=>$money, ':type'=>$row['type'], ':channel'=>$channel, ':subchannel'=>$subchannel, ':realmoney'=>$money, ':getmoney'=>$money, ':notify_url'=>$return_url, ':return_url'=>$return_url, ':domain'=>$domain, ':clientip'=>$clientip]))exit('{"code":-1,"msg":"创建订单失败，请返回重试！"}');
+	if(isset($_GET['redirect'])){
+		header('Location: ./testsubmit.php?trade_no='.rawurlencode($trade_no));
+		exit;
+	}
 	$result = ['code'=>0, 'msg'=>'succ', 'url'=>'./testsubmit.php?trade_no='.$trade_no];
 	exit(json_encode($result));
 break;
