@@ -631,6 +631,11 @@ function testpay(subid, id) {
 		yes: function(){
 			var name = $("input[name='test_name']").val();
 			var money = $("input[name='test_money']").val();
+			var payWindow = window.open('about:blank', '_blank');
+			if(!payWindow){
+				layer.alert('请允许本站打开弹出式窗口后重试', {icon:2});
+				return;
+			}
 			$.ajax({
 				type : 'POST',
 				url : 'ajax_pay.php?act=testpay',
@@ -639,12 +644,14 @@ function testpay(subid, id) {
 				success : function(data) {
 					if(data.code == 0){
 						layer.close(ii);
-						window.location.assign(data.url);
+						payWindow.location.replace(data.url);
 					}else{
+						payWindow.close();
 						layer.alert(data.msg, {icon:2});
 					}
 				},
 				error:function(data){
+					payWindow.close();
 					layer.msg('服务器错误');
 					return false;
 				}
