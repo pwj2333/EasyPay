@@ -61,10 +61,10 @@ if(!defined('IN_PLUGIN'))exit();
 </div>
 </div>
 </div>
-<script src="<?php echo $cdnpublic?>jquery/1.12.4/jquery.min.js"></script>
-<script src="<?php echo $cdnpublic?>layer/3.1.1/layer.min.js"></script>
-<script src="<?php echo $cdnpublic?>jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
-<script src="<?php echo $cdnpublic?>clipboard.js/1.7.1/clipboard.min.js"></script>
+<script src="/assets/vendor/wxpay/jquery-1.12.4.min.js"></script>
+<script src="/assets/vendor/wxpay/layer-3.1.1.min.js"></script>
+<script src="/assets/vendor/wxpay/jquery.qrcode-1.0.min.js"></script>
+<script src="/assets/vendor/wxpay/clipboard-1.7.1.min.js"></script>
 <script>
     var clipboard = new Clipboard('#copy-btn');
 	clipboard.on('success', function(e) {
